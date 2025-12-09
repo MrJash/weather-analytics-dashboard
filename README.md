@@ -14,24 +14,34 @@ A full-stack weather analytics platform combining real-time API data collection,
 - [Database Schema](#database-schema)
 - [Model Performance](#model-performance)
 - [Important Notes for Forkers](#important-notes-for-forkers)
+- [Troubleshooting](#troubleshooting)
+- [Requirements](#requirements)
 - [Contributing](#contributing)
 - [License](#license)
+- [Support](#support)
+- [Acknowledgments](#acknowledgments)
 
 ---
 
-## ✨ Features
+## Features
 
-- **Real-time Data Collection**:  Fetches 3 years of historical weather data from Open-Meteo API for 8 Indian cities
-- **SQL Server Integration**: Stores 8,000+ weather records with automated pipeline
-- **AI-Powered Forecasting**: Random Forest models for temperature and weather condition predictions
-- **High Accuracy**: ~89% accuracy on condition classification and precise temperature forecasting (MAE tracking)
-- **30-Day & 7-Day Forecasts**:  Generates future predictions with iterative model inputs
-- **Power BI Dashboard**: Interactive visualizations combining historical data, model performance, and forecasts
-- **Comprehensive Metrics**: Temperature MAE, condition accuracy, and performance tracking across all cities
+✨ **Real-time Data Collection**:   Fetches 3 years of historical weather data from Open-Meteo API for 8 Indian cities
+
+✨ **SQL Server Integration**:  Stores 8,000+ weather records with automated pipeline
+
+✨ **AI-Powered Forecasting**: Random Forest models for temperature and weather condition predictions
+
+✨ **High Accuracy**: ~89% accuracy on condition classification and precise temperature forecasting (MAE tracking)
+
+✨ **30-Day & 7-Day Forecasts**:  Generates future predictions with iterative model inputs
+
+✨ **Power BI Dashboard**: Interactive visualizations combining historical data, model performance, and forecasts
+
+✨ **Comprehensive Metrics**: Temperature MAE, condition accuracy, and performance tracking across all cities
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -70,7 +80,7 @@ A full-stack weather analytics platform combining real-time API data collection,
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Component | Technology |
 |-----------|-----------|
@@ -83,7 +93,7 @@ A full-stack weather analytics platform combining real-time API data collection,
 
 ---
 
-## 📦 Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 - **Python 3.8+**
@@ -94,7 +104,7 @@ A full-stack weather analytics platform combining real-time API data collection,
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/live-weather-ai. git
+git clone https://github.com/YOUR_USERNAME/live-weather-ai.git
 cd live-weather-ai
 ```
 
@@ -130,13 +140,13 @@ If you prefer not to use SQL Server, modify the scripts to use CSV files instead
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
-### **CRITICAL:  Configure Database Connection**
+### **CRITICAL:   Configure Database Connection**
 
-This project is pre-configured to connect to a specific local SQL Server instance that may not be active on your machine. **You must modify the database connection settings** in both scripts. 
+This project is pre-configured to connect to a specific local SQL Server instance that may not be active on your machine. **You must modify the database connection settings** in both scripts.  
 
-#### For SQL Server Users: 
+#### For SQL Server Users:  
 
 **In `data_collector_sql.py` (Line ~11):**
 ```python
@@ -147,7 +157,7 @@ DATABASE_NAME = "WeatherDB"           # ✅ You can keep this or change it
 **Change to your SQL Server instance:**
 ```python
 SERVER_NAME = r"YOUR_MACHINE_NAME\SQLEXPRESS"  # e.g., "DESKTOP-XYZ\SQLEXPRESS"
-# For remote servers:  SERVER_NAME = "your. server.ip,1433" or "server.domain.com"
+# For remote servers:   SERVER_NAME = "your. server.ip,1433" or "server.domain.com"
 ```
 
 **In `prediction_script_sql.py` (Line ~10):**
@@ -158,7 +168,7 @@ DATABASE_NAME = "WeatherDB"           # ✅ You can keep this or change it
 
 **Find your SQL Server instance name:**
 ```bash
-# Windows: Open SQL Server Configuration Manager
+# Windows:  Open SQL Server Configuration Manager
 # Or check SQL Server Management Studio (SSMS)
 ```
 
@@ -166,7 +176,7 @@ DATABASE_NAME = "WeatherDB"           # ✅ You can keep this or change it
 
 #### For CSV Users (Alternative):
 
-Modify `data_collector_sql.py` to save to CSV instead: 
+Modify `data_collector_sql.py` to save to CSV instead:  
 ```python
 # Replace the SQL Server section (lines 58-65) with:
 print("\nSaving data to CSV...")
@@ -204,13 +214,13 @@ The system collects data for these 8 major Indian cities:
 CITIES = {
     "New Delhi": {"latitude": 28.61, "longitude": 77.23},
     "Mumbai": {"latitude": 19.08, "longitude": 72.88},
-    # Add your city:  {"latitude": lat, "longitude": lon}
+    # Add your city:   {"latitude": lat, "longitude": lon}
 }
 ```
 
 ---
 
-## 🚀 Usage
+## Usage
 
 ### Step 1: Collect Historical Weather Data
 ```bash
@@ -219,21 +229,21 @@ python data_collector_sql.py
 
 **What it does:**
 - Fetches 3 years of historical weather data from Open-Meteo API
-- Collects:  Max Temp, Min Temp, Humidity, Pressure, Precipitation
+- Collects:   Max Temp, Min Temp, Humidity, Pressure, Precipitation
 - Stores data in SQL Server `HistoricalWeather` table
 - **First run takes ~2-5 minutes** depending on internet speed
 
 **Output:**
 ```
 --- Starting Data Collector for SQL Server ---
-Starting data collection for 8 cities... 
+Starting data collection for 8 cities...  
 
 Getting 3 years of data for New Delhi...
   Successfully processed data for New Delhi
 Getting 3 years of data for Mumbai...
   Successfully processed data for Mumbai
-... 
-Successfully saved historical data to 'HistoricalWeather' table in SQL Server. 
+...  
+Successfully saved historical data to 'HistoricalWeather' table in SQL Server.  
 --- Data Collection Script Finished ---
 ```
 
@@ -247,7 +257,7 @@ python prediction_script_sql.py
 **What it does:**
 - Loads historical data from SQL Server
 - Feature engineering (lag features, daily normals, seasonal patterns)
-- Trains Random Forest models for: 
+- Trains Random Forest models for:  
   - **Temperature Prediction** (Regression)
   - **Weather Condition Classification** (Clear/Rainy)
 - Evaluates model performance (MAE, Accuracy)
@@ -262,14 +272,14 @@ python prediction_script_sql.py
 --- Starting AI Prediction & Evaluation Script ---
 Loading historical data from SQL Server...
 Successfully loaded data.
-Found 8 cities to process... 
+Found 8 cities to process...  
 
   Processing forecast and evaluation for New Delhi...
-    Evaluation complete:  MAE=2.34°C, Accuracy=87.23%
+    Evaluation complete:   MAE=2.34°C, Accuracy=87.23%
     Re-training models on full dataset for forecasting...
   Processing forecast and evaluation for Mumbai...
-    Evaluation complete: MAE=1.89°C, Accuracy=91.45%
-... 
+    Evaluation complete:  MAE=1.89°C, Accuracy=91.45%
+...  
 Successfully saved 7-day forecast to 'Forecast7Day' table.
 Successfully saved 30-day average forecast to 'Forecast30DayAvg' table.
 Successfully saved model performance metrics to 'ModelPerformance' table.
@@ -296,7 +306,7 @@ Successfully saved model performance metrics to 'ModelPerformance' table.
 
 ---
 
-## 📊 Database Schema
+## Database Schema
 
 ### HistoricalWeather Table
 ```sql
@@ -342,9 +352,9 @@ CREATE TABLE ModelPerformance (
 
 ---
 
-## 📈 Model Performance
+## Model Performance
 
-The system achieves competitive accuracy across all cities: 
+The system achieves competitive accuracy across all cities:  
 
 | City | Temperature MAE (°C) | Condition Accuracy |
 |------|----------------------|-------------------|
@@ -366,7 +376,7 @@ The system achieves competitive accuracy across all cities:
 
 ---
 
-## ⚠️ Important Notes for Forkers
+## Important Notes for Forkers
 
 ### 1. **Database Configuration is Required**
 - This repository uses SQL Server with Windows Authentication
@@ -379,12 +389,12 @@ The system achieves competitive accuracy across all cities:
 - Cache is stored in `.cache/` directory (auto-created)
 
 ### 3. **Running the Scripts Regularly**
-- Schedule data collection weekly/monthly using: 
+- Schedule data collection weekly/monthly using:  
   - **Windows Task Scheduler** (for Windows)
   - **Cron** (for Linux/Mac)
   - **GitHub Actions** (optional - see below)
 
-### 4. **Optional:  Automate with GitHub Actions**
+### 4. **Optional:   Automate with GitHub Actions**
 Create `.github/workflows/weather-forecast.yml`:
 ```yaml
 name: Weather Data & Forecast
@@ -401,7 +411,7 @@ jobs:
         with:
           python-version: 3.9
       - run: pip install -r requirements.txt
-      - run: python data_collector_sql.py
+      - run: python data_collector_sql. py
       - run: python prediction_script_sql.py
 ```
 
@@ -412,7 +422,7 @@ jobs:
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 | Issue | Solution |
 |-------|----------|
@@ -425,7 +435,7 @@ jobs:
 
 ---
 
-## 📝 Requirements
+## Requirements
 
 ```
 pandas==2.0.0
@@ -444,7 +454,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Areas for improvement:
 - [ ] Add more weather features (wind speed, UV index)
@@ -456,13 +466,13 @@ Contributions are welcome! Areas for improvement:
 
 ---
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see LICENSE file for details.
+This project is licensed under the MIT License - see LICENSE file for details. 
 
 ---
 
-## 📞 Support
+## Support
 
 For issues or questions: 
 1. Check [Troubleshooting](#troubleshooting) section
@@ -472,7 +482,7 @@ For issues or questions:
 
 ---
 
-## 🌟 Acknowledgments
+## Acknowledgments
 
 - **Weather Data**: [Open-Meteo](https://open-meteo.com/) - Free weather API
 - **Libraries**:  Pandas, Scikit-learn, SQLAlchemy
