@@ -89,7 +89,7 @@ A full-stack weather analytics platform combining real-time API data collection,
 | **ML Models** | Scikit-learn (Random Forest) |
 | **Database** | SQL Server (MSSQL) |
 | **Visualization** | Power BI, Pandas |
-| **Weather Data** | Open-Meteo Archive API |
+| **Weather Data** | Open-Meteo Archive API, WeatherAPI.com |
 
 ---
 
